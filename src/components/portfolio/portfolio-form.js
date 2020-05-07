@@ -76,7 +76,7 @@ export default class PortfolioForm extends Component {
         id: id,
         name: name || "",
         description: description || "",
-        category: category || "",
+        category: category || "Javascript",
         position: position || "",
         url: url || "",
         editMode: true,
@@ -162,10 +162,11 @@ export default class PortfolioForm extends Component {
         } else {
           this.props.handleNewFormSubmission(response.data.portfolio_item);
         }
+
         this.setState({
           name: "",
           description: "",
-          category: "",
+          category: "eCommerce",
           position: "",
           url: "",
           thumb_image: "",
@@ -174,9 +175,6 @@ export default class PortfolioForm extends Component {
           editMode: false,
           apiUrl: "https://aaroning.devcamp.space/portfolio/portfolio_items",
           apiAction: "post",
-          thumb_image: thumb_image_url || "",
-          banner_image: banner_image_url || "",
-          logo: logo_url || "",
         });
 
         [this.thumbRef, this.bannerRef, this.logoRef].forEach((ref) => {
@@ -228,7 +226,7 @@ export default class PortfolioForm extends Component {
           >
             <option value="null"> SELECT LANGUAGE </option>
             <option value="Python">Python</option>
-            <option value="React">React</option>
+            <option value="C#">C#</option>
             <option value="Javascript">Javascript</option>
           </select>
         </div>

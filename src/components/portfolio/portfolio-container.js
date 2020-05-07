@@ -63,8 +63,8 @@ export default class PortfolioContainer extends Component {
     return (
       <div className="homepage-wrapper">
         <div className="filter-links">
-          <button className="btn" onClick={() => this.handleFilter("React")}>
-            React
+          <button className="btn" onClick={() => this.handleFilter("C#")}>
+            C#
           </button>
           <button className="btn" onClick={() => this.handleFilter("Python")}>
             Python
