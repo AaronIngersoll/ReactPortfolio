@@ -4,7 +4,7 @@ import { withRouter } from "react-router";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const NavigationComponent = props => {
+const NavigationComponent = (props) => {
   const dynamicLink = (route, linkText) => {
     return (
       <div className="nav-link-wrapper">
@@ -18,14 +18,14 @@ const NavigationComponent = props => {
   const handleSignOut = () => {
     axios
       .delete("https://api.devcamp.space/logout", { withCredentials: true })
-      .then(response => {
+      .then((response) => {
         if (response.status === 200) {
           props.history.push("/");
           props.handleSuccessfulLogout();
         }
         return response.data;
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("Error signing out", error);
       });
   };
@@ -63,7 +63,9 @@ const NavigationComponent = props => {
       </div>
 
       <div className="right-side">
-        AARON INGERSOLL
+        <NavLink to="/auth" activeClassName="nav-link-active">
+          AARON INGERSOLL
+        </NavLink>
         {props.loggedInStatus === "LOGGED_IN" ? (
           <a onClick={handleSignOut}>
             <FontAwesomeIcon icon="sign-out-alt" />
