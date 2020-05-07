@@ -1,13 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import axios from "axios";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import {
-  faTrash,
-  faSignOutAlt,
-  faEdit
-} from "@fortawesome/free-solid-svg-icons";
-
+import { FontAwesomeIcon } from "@fortawesome/free-solid-svg-icons";
 import NavigationContainer from "./navigation/navigation-container";
 import Home from "./pages/home";
 import About from "./pages/about";
@@ -17,15 +11,18 @@ import PortfolioManager from "./pages/portfolio-manager";
 import PortfolioDetail from "./portfolio/portfolio-detail";
 import Auth from "./pages/auth";
 import NoMatch from "./pages/no-match";
+import Icons from "./icons";
 
-library.add(faTrash, faSignOutAlt, faEdit);
+
 
 export default class App extends Component {
   constructor(props) {
     super(props);
 
+    Icons();
+
     this.state = {
-      loggedInStatus: "NOT_LOGGED_IN"
+      loggedInStatus: "NOT_LOGGED_IN",
     };
 
     this.handleSuccessfulLogin = this.handleSuccessfulLogin.bind(this);
@@ -35,28 +32,28 @@ export default class App extends Component {
 
   handleSuccessfulLogin() {
     this.setState({
-      loggedInStatus: "LOGGED_IN"
+      loggedInStatus: "LOGGED_IN",
     });
   }
 
   handleUnsuccessfulLogin() {
     this.setState({
-      loggedInStatus: "NOT_LOGGED_IN"
+      loggedInStatus: "NOT_LOGGED_IN",
     });
   }
 
   handleSuccessfulLogout() {
     this.setState({
-      loggedInStatus: "NOT_LOGGED_IN"
+      loggedInStatus: "NOT_LOGGED_IN",
     });
   }
 
   checkLoginStatus() {
     return axios
       .get("https://api.devcamp.space/logged_in", {
-        withCredentials: true
+        withCredentials: true,
       })
-      .then(response => {
+      .then((response) => {
         const loggedIn = response.data.logged_in;
         const loggedInStatus = this.state.loggedInStatus;
 
@@ -64,15 +61,15 @@ export default class App extends Component {
           return loggedIn;
         } else if (loggedIn && loggedInStatus === "NOT_LOGGED_IN") {
           this.setState({
-            loggedInStatus: "LOGGED_IN"
+            loggedInStatus: "LOGGED_IN",
           });
         } else if (!loggedIn && loggedInStatus === "LOGGED_IN") {
           this.setState({
-            loggedInStatus: "NOT_LOGGED_IN"
+            loggedInStatus: "NOT_LOGGED_IN",
           });
         }
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("Error", error);
       });
   }
@@ -87,7 +84,7 @@ export default class App extends Component {
         key="portfolio-manager"
         path="/portfolio-manager"
         component={PortfolioManager}
-      />
+      />,
     ];
   }
 
@@ -106,7 +103,7 @@ export default class App extends Component {
 
               <Route
                 path="/auth"
-                render={props => (
+                render={(props) => (
                   <Auth
                     {...props}
                     handleSuccessfulLogin={this.handleSuccessfulLogin}

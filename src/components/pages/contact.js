@@ -17,7 +17,7 @@ export default function () {
         <div className="contact-bullet-points">
           <div className="bullet-point-group">
             <div className="icon">
-              <FontAwesomeIcon icon="phone-square" />
+              <FontAwesomeIcon icon="phone" />
             </div>
 
             <div className="text">385-225-5442</div>
