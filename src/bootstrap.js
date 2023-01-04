@@ -19,7 +19,6 @@ function main() {
 				<App />
 			</BrowserRouter>
 		</Provider>
-		// document.querySelector(".app-wrapper")
 	);
 }
 
