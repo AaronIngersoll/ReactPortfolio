@@ -1,47 +1,55 @@
 // webpack plugins
-const SplitChunksPlugin = require('webpack/lib/optimize/SplitChunksPlugin');
+const SplitChunksPlugin = require("webpack/lib/optimize/SplitChunksPlugin");
 
 module.exports = {
-  entry: {
-    app: ['./src/bootstrap.js'],
-    vendor: './src/vendor.js',
-  },
+	entry: {
+		app: ["./src/bootstrap.js"],
+		vendor: "./src/vendor.js",
+	},
 
-  resolve: {
-    extensions: ['.js', '.scss'],
+	resolve: {
+		extensions: [".js", ".scss"],
 
-    modules: ['node_modules'],
-  },
+		modules: ["node_modules"],
+	},
 
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: ['babel-loader'],
-      },
+	module: {
+		rules: [
+			{
+				test: /\.js$/,
+				exclude: /node_modules/,
+				use: ["babel-loader"],
+			},
 
-      {
-        type: 'javascript/auto',
-        test: /\.(jpg|png|gif|eot|svg|ttf|woff|woff2)$/,
-        loader: 'file-loader',
-        options: {
-          name: '[path][name].[ext]',
-          publicPath: '/',
-        },
-      },
+			{
+				type: "javascript/auto",
+				test: /\.(jpg|png|gif|eot|svg|ttf|woff|woff2)$/,
+				use: [
+					{
+						loader: "file-loader",
+						options: {
+							name: "[path][name].[ext]",
+							publicPath: "/",
+						},
+					},
+				],
+			},
 
-      {
-        test: /\.(mp4|webm)$/,
-        loader: 'url?limit=10000',
-      },
-    ],
-  },
+			{
+				test: /\.(mp4|webm)$/,
+				use: [
+					{
+						loader: "url?limit=10000",
+					},
+				],
+			},
+		],
+	},
 
-  plugins: [
-    new SplitChunksPlugin({
-      name: ['app', 'vendor'],
-      minChunks: Infinity,
-    }),
-  ],
+	plugins: [
+		new SplitChunksPlugin({
+			name: ["app", "vendor"],
+			minChunks: Infinity,
+		}),
+	],
 };
