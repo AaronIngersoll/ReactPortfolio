@@ -47,7 +47,6 @@ export default class App extends Component {
 	}
 
 	checkLoginStatus() {
-		console.log("I am running");
 		return axios
 			.get("https://api.devcamp.space/logged_in", {
 				withCredentials: true,

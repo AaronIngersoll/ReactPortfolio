@@ -7,16 +7,13 @@ const NavigationComponent = (props) => {
 	const dynamicLink = (route, linkText) => {
 		return (
 			<div className="nav-link-wrapper">
-				<NavLink to={route} activeclassName="nav-link-active">
+				<NavLink to={route} activeclassname="nav-link-active">
 					{linkText}
 				</NavLink>
 			</div>
 		);
 	};
-	const hello = () => {
-		console.log(props);
-	};
-	hello();
+
 	const handleSignOut = () => {
 		axios
 			.delete("https://api.devcamp.space/logout", { withCredentials: true })
@@ -36,25 +33,25 @@ const NavigationComponent = (props) => {
 		<div className="nav-wrapper">
 			<div className="left-side">
 				<div className="nav-link-wrapper">
-					<NavLink exact to="/" activeclassName="nav-link-active">
+					<NavLink exact to="/" activeclassname="nav-link-active">
 						Home
 					</NavLink>
 				</div>
 
 				<div className="nav-link-wrapper">
-					<NavLink to="/about-me" activeclassName="nav-link-active">
+					<NavLink to="/about-me" activeclassname="nav-link-active">
 						About
 					</NavLink>
 				</div>
 
 				<div className="nav-link-wrapper">
-					<NavLink to="/contact" activeclassName="nav-link-active">
+					<NavLink to="/contact" activeclassname="nav-link-active">
 						Contact
 					</NavLink>
 				</div>
 
 				<div className="nav-link-wrapper">
-					<NavLink activeclassName="nav-link-active">Blog</NavLink>
+					<NavLink activeclassname="nav-link-active">Blog</NavLink>
 				</div>
 
 				{props.loggedInStatus === "LOGGED_IN"
@@ -63,7 +60,7 @@ const NavigationComponent = (props) => {
 			</div>
 
 			<div className="right-side">
-				<NavLink to="/auth" activeclassName="nav-link-active">
+				<NavLink to="/auth" activeclassname="nav-link-active">
 					AARON INGERSOLL
 				</NavLink>
 				{props.loggedInStatus === "LOGGED_IN" ? (
