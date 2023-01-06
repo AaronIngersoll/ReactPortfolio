@@ -8,7 +8,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const DefinePlugin = require("webpack/lib/DefinePlugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+// const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const LoaderOptionsPlugin = require("webpack/lib/LoaderOptionsPlugin");
 
 module.exports = merge(webpackCommon, {
@@ -17,17 +17,41 @@ module.exports = merge(webpackCommon, {
 	devtool: "source-map",
 	mode: "production",
 	output: {
-		path: path.resolve(__dirname, "../dist"),
-		filename: "[name].[fullhash:8].js",
-		// sourceMapFilename: "[name].[fullhash].map",
-		chunkFilename: "[id].[fullhash:8].js",
+		path: path.resolve(__dirname, "../static/dist"),
+
+		filename: "[name].js",
+
+		sourceMapFilename: "[name].map",
+
+		chunkFilename: "[id]-chunk.js",
+
+		publicPath: "/",
 	},
 
 	module: {
 		rules: [
 			{
 				test: /\.s?css$/,
-				use: [MiniCssExtractPlugin.loader, "css-loader"],
+				use: [
+					{
+						loader: "style-loader",
+					},
+					{
+						loader: "css-loader",
+						options: {
+							importLoaders: 2,
+						},
+					},
+					{
+						loader: "sass-loader",
+						options: {
+							sassOptions: {
+								outputStyle: "expanded",
+							},
+							sourceMap: true,
+						},
+					},
+				],
 			},
 		],
 	},
@@ -65,7 +89,6 @@ module.exports = merge(webpackCommon, {
 				NODE_ENV: JSON.stringify("production"),
 			},
 		}),
-		new MiniCssExtractPlugin(),
 
 		new LoaderOptionsPlugin({
 			options: {
