@@ -17,7 +17,7 @@ module.exports = merge(webpackCommon, {
 	devtool: "source-map",
 	mode: "production",
 	output: {
-		path: path.resolve(__dirname, "../static/dist"),
+		path: path.resolve(__dirname, "../dist"),
 
 		filename: "[name].js",
 
